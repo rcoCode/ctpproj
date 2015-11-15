@@ -16,4 +16,3 @@ libraryDependencies ++= Seq(
 // other, legacy style, accesses its actions statically.
 routesGenerator := InjectedRoutesGenerator
 
-"org.webjars"	%	"bootstrap"	%	"3.3.5”
