@@ -5,6 +5,8 @@ import com.avaje.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 /**
  * Created by rebeca on 11/18/2015.
@@ -23,5 +25,8 @@ public class Tools extends Model{
 
     @ManyToOne
     public ToolType category;
+
+    @OneToMany
+    public List<Comments> commentList;
 
 }
