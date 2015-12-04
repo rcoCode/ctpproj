@@ -13,7 +13,7 @@ public class Application extends Controller {
 
     public Result index() {return ok(index.render(""));}
 
-    public Result login(){ return ok(views.html.login.render("");)}
+    public Result login(){ return ok(views.html.login.render(""));}
 
     public Result newLogin() {
         DynamicForm userForm=form().bindFromRequest();
@@ -50,12 +50,12 @@ public class Application extends Controller {
 
         flash("success", "Welcome new user " + nUser.username);
         session("user_id", nUser.id.toString());
-        return redirect(routes.Users.index());
+        return redirect(routes.Application.index());
     }
 
     public Result logout() {
         session().remove("user_id");
-        return redirect(routers.Application.indx());
+        return redirect(routes.Application.index());
     }
 
 }
