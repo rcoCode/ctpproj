@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/CTPproj -Dhttp.port=${PORT} -Dplay.evolutions.db.default.autoApply=true
+web: target/universal/stage/bin/ctpproj -Dhttp.port=${PORT} -Dplay.evolutions.db.default.autoApply=true

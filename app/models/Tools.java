@@ -1,0 +1,27 @@
+package models;
+
+import com.avaje.ebean.Model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+/**
+ * Created by rebeca on 11/18/2015.
+ */
+@Entity
+public class Tools extends Model{
+    @Id
+    public Long id;
+
+    public String name;
+
+    public String description;
+
+    @ManyToOne
+    public Users owner;
+
+    @ManyToOne
+    public ToolType category;
+
+}
