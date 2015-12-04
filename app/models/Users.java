@@ -52,4 +52,10 @@ public class Users extends Model{
 
     @OneToMany
     public List<Tools> toolList;
+
+    @OneToMany(mappedBy = "receiver")
+    public List<PM> messages;
+
+    @OneToMany(mappedBy = "sender")
+    public List<PM> sentMess;
 }
