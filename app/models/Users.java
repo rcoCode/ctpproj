@@ -28,11 +28,13 @@ public class Users extends Model{
     @Constraints.Required
     public String password_hash;
 
+    public Boolean admin;
+
     public boolean authenticate (String password){
         return BCrypt.checkpw(password, this.password_hash);
     }
 
-    public static Users createUser(String username,String password,String email){
+    public static Users createUser(String username,String password,String email,Boolean admin){
         if(password==null ||username==null ||email==null || password.length()<8){
             return null;
         }
@@ -43,6 +45,7 @@ public class Users extends Model{
         nUser.username=username;
         nUser.password_hash=pwHashed;
         nUser.email=email;
+        nUser.admin=admin;
 
         return nUser;
     }
