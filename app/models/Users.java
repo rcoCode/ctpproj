@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.Constraint;
 import java.util.List;
 
 /**
@@ -30,11 +29,13 @@ public class Users extends Model{
 
     public Boolean admin;
 
+    public static Finder<Long, Users> find=new Finder<Long, Users>(Users.class);
+
     public boolean authenticate (String password){
         return BCrypt.checkpw(password, this.password_hash);
     }
 
-    public static Users createUser(String username,String password,String email,Boolean admin){
+    public static Users createUser(String username,String password,String email){
         if(password==null ||username==null ||email==null || password.length()<8){
             return null;
         }
@@ -45,7 +46,7 @@ public class Users extends Model{
         nUser.username=username;
         nUser.password_hash=pwHashed;
         nUser.email=email;
-        nUser.admin=admin;
+        nUser.admin=false;
 
         return nUser;
     }

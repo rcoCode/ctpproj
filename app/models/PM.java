@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 /**
- * Created by rebec on 12/4/2015.
+ * Created by rebeca on 12/4/2015.
  */
 @Entity
 public class PM extends Model{

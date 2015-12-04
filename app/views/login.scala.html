@@ -1,0 +1,13 @@
+@(message: String)
+
+@main(""){
+<h1>LogIn:</h1>
+<form action="@routes.Application.login()" medthod="post">
+    <label for="username">Username: </label>
+    <input type="text" name="username">
+    <br>
+
+    <label for="password">Password: </label>
+    <input type="text" name="password">
+</form>
+}
