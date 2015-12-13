@@ -15,11 +15,11 @@ import java.util.Date;
 public class Request extends Model{
     @Id
     public Long id;
-
+    //message
     public String message;
-
+    //time of request
     public Date timer;
-
+    //yes or no from user
     public Boolean status;
 
     @ManyToOne
