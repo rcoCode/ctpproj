@@ -30,7 +30,7 @@ public class Application extends Controller {
             return redirect(routes.Application.index());
         }
 
-        return redirect(routes.Application.index());
+        return redirect(routes.Users.show(users.id));
     }
 
     public Result signup() { return ok(views.html.signup.render(""));}
