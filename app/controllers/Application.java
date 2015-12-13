@@ -50,7 +50,7 @@ public class Application extends Controller {
 
         flash("success", "Welcome new user " + nUser.username);
         session("user_id", nUser.id.toString());
-        return redirect(routes.Application.index());
+        return redirect(routes.Users.show(nUser.id));
     }
 
     public Result logout() {
