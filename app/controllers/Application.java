@@ -13,9 +13,9 @@ public class Application extends Controller {
 
     public Result index() {return ok(index.render("Tool Sharing"));}
 
-    public Result login(){ return ok(views.html.login.render(""));}
+    public Result getlogin(){ return ok(views.html.login.render(""));}
 
-    public Result newLogin() {
+    public Result login() {
         DynamicForm userForm=form().bindFromRequest();
         String username=userForm.data().get("username");
         String password=userForm.data().get("password");

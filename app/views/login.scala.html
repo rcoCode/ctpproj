@@ -2,18 +2,21 @@
 
 @main(""){
 <div class="container">
-    <h2>LogIn:</h2>
-    <form class="form-horizontal" action="@routes.Application.newLogin()" medthod="post">
+    <h1>Login Form</h1>
+    <form class="form-horizontal" action="@routes.Application.login()" method="post">
         <div class="form-group">
-            <label for="username">Username: </label>
-            <input type="text" name="username" class="form-control" placeholder="Enter Username">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control input-lg">
+            <br>
         </div>
-        <br>
+
         <div class="form-group">
-            <label for="password">Password: </label>
-            <input type="password" name="password" class="form-control" placeholder="Enter Password">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control input-lg">
+            <br>
         </div>
-        <button class="btn btn-default">Submit</button>
+
+        <button class="btn btn-default btn-lg">Login</button>
     </form>
 </div>
 }
