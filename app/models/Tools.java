@@ -29,4 +29,6 @@ public class Tools extends Model{
     @OneToMany
     public List<Comments> commentList;
 
+    public static Find<Long,Tools> find=new Finder<Long, Tools>(Tools.class);
+
 }

@@ -12,11 +12,14 @@ GET     /signup                     controllers.Application.signup()
 POST    /signup                     controllers.Application.newUser()
 GET     /logout                     controllers.Application.logout()
 
-GET     /Users/:id                      controllers.Users.show(id:Long)
+GET     /Users/:id                  controllers.Users.show(id:Long)
 
 GET     /tooltype                   controllers.ToolTypes.index()
 POST    /tooltype                   controllers.ToolTypes.create()
-GET     /tooltypes/:id                  controllers.ToolTypes.show(id:Long)
+GET     /tooltypes/:id              controllers.ToolTypes.show(id:Long)
+
+GET     /tools                      controllers.Tools.index()
+POST    /tools                      controllers.Tools.create()
 
 
 # Map static resources from the /public folder to the /assets URL path
