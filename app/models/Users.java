@@ -4,15 +4,14 @@ import com.avaje.ebean.Model;
 import play.data.validation.Constraints;
 
 import org.mindrot.jbcrypt.BCrypt;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by rebeca on 11/18/2015.
  */
+@Table(name="Users")
 @Entity
 public class Users extends Model{
     @Id
@@ -24,10 +23,9 @@ public class Users extends Model{
     @Column(unique = true)
     public String username;
 
-    @Constraints.Required
     public String password_hash;
 
-    public Boolean admin;
+    //public Boolean admin;
 
     public static Finder<Long, Users> find=new Finder<Long, Users>(Users.class);
 
@@ -36,19 +34,19 @@ public class Users extends Model{
     }
 
     public static Users createUser(String username,String password,String email){
-        if(password==null ||username==null ||email==null || password.length()<8){
+        if(password==null || username==null || email==null || password.length()<8){
             return null;
         }
 
-        String pwHashed = BCrypt.hashpw(password, BCrypt.gensalt());
+        String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
 
-        Users nUser = new Users();
-        nUser.username=username;
-        nUser.password_hash=pwHashed;
-        nUser.email=email;
-        nUser.admin=false;
+        Users User = new Users();
+        User.username=username;
+        User.password_hash=passwordHash;
+        User.email=email;
+        //User.admin=false;
 
-        return nUser;
+        return User;
     }
 
     @OneToMany

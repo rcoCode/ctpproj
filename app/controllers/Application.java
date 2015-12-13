@@ -11,7 +11,7 @@ import static play.data.Form.form;
 
 public class Application extends Controller {
 
-    public Result index() {return ok(index.render(""));}
+    public Result index() {return ok(index.render("Tool Sharing"));}
 
     public Result login(){ return ok(views.html.login.render(""));}
 
@@ -35,7 +35,7 @@ public class Application extends Controller {
 
     public Result signup() { return ok(views.html.signup.render(""));}
 
-    public Result userSignup() {
+    public Result newUser() {
         DynamicForm userForm=form().bindFromRequest();
         String username=userForm.data().get("username");
         String password=userForm.data().get("password");
