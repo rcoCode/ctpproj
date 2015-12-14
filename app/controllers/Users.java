@@ -4,6 +4,7 @@ import models.Tools;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+import java.util.ArrayList;
 import java.util.List;
 import views.html.*;
 
@@ -17,8 +18,12 @@ public class Users extends Controller{
             return notFound("not found");
         }
         else {
-            List<Tools> tools= auser.toolList;
-            return ok(views.html.Users.profile.render(""));
+            List<models.Tools> mytools = auser.toolList;
+            if(mytools == null){
+                mytools = new ArrayList<>();
+                return ok(views.html.Users.profile.render(mytools));
+            }
+            return ok(views.html.Users.profile.render(mytools));
         }
     }
 }

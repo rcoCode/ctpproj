@@ -1,11 +1,11 @@
-@(message: String)
+@(mytools:List[models.Tools])
 
 @main("Tool Sharing") {
 <div class="container">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top topnav" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">WebSiteName</a>
+                <a class="navbar-brand" href="@routes.Application.index()">Tool Sharing</a>
             </div>
             <div>
                 <ul class="nav navbar-nav">
@@ -26,7 +26,25 @@
             </div>
         </div>
     </nav>
-    
+
+    <div class="container">
+        <div class="row">
+            <div class="span3 col-sm-offset-11"><h2><a href="@routes.Tools.index()"> <span class="label label-info">New Tool</span> </a></h2></div>
+        </div>
+
+        <h2>Tools</h2>
+        @if(mytools.isEmpty()){
+            <h3>No tools posted</h3>
+        }   else{
+            <ul>
+                @for(mt<-mytools){
+                    <li>@mt.name</li>
+                }
+            </ul>
+        }
+
+    </div>
+
 
 </div>
 }

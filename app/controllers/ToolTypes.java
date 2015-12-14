@@ -29,6 +29,7 @@ public class ToolTypes extends Controller{
     public Result show(Long id){
         ToolType type = ToolType.find.byId(id);
         if (type==null){
+            flash("error","No tools found");
             return notFound("not Found");
         }else {
             List<Tools> tools = type.toolList;

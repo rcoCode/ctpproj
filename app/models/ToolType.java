@@ -19,7 +19,7 @@ public class ToolType extends Model{
     @Constraints.Required
     public String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "category")
     public List<Tools> toolList;
 
     public static Finder<Long,ToolType> find = new Finder<Long, ToolType>(ToolType.class);

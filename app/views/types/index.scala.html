@@ -1,10 +1,15 @@
 @(types: List[ToolType])
 
 @main("ToolTypes") {
-    <form action = "@routes.ToolTypes.create()" method = "post">
-        <input type = "text" name = "name">
-        <button>submit</button>
-    </form>
+<div class="container">
+    <div class="offset-sm-4">
+        <form action = "@routes.ToolTypes.create()" method = "post">
+            <div class="col-sm-5">
+                <input type = "text" class="form-control input" name = "name">
+            </div>
+            <button class="btn btn-default">submit</button>
+        </form>
+    </div>
 
     @if(types.isEmpty()) {
         <h2>No types available</h2>
@@ -14,10 +19,11 @@
             @for(ty <- types) {
                 <li>
                     <form action = "@routes.ToolTypes.show(ty.id)" method="get">
-                        <button>@ty.name</button>
+                        <button class="btn btn-link btn-lg">@ty.name</button>
                     </form>
                 </li>
             }
         </ul>
     }
+</div>
 }

@@ -49,7 +49,7 @@ public class Users extends Model{
         return User;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "owner")
     public List<Tools> toolList;
 
     @OneToMany(mappedBy = "receiver")

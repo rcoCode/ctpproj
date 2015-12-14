@@ -8,11 +8,13 @@
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
     <link rel='stylesheet' href='@routes.Assets.versioned("lib/bootstrap/css/bootstrap.min.css")'>
     <link rel="stylesheet" href='@routes.Assets.versioned("lib/bootstrap/css/bootstrap.css")'>
+    <style>
+        body{padding-top:50px;}
+    </style>
 </head>
 
 <body>
 
-@content
 <center>
     @* Display flash messages *@
     @if(flash.containsKey("success")) {
@@ -24,6 +26,7 @@
     @flash.get("error")
     }
 </center>
+@content
 
 </body>
 
