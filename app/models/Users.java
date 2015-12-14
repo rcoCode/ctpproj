@@ -37,6 +37,13 @@ public class Users extends Model{
         if(password==null || username==null || email==null || password.length()<8){
             return null;
         }
+        if (Users.find.where().eq("username", username).findUnique()!=null){
+            Users user = new Users();
+            user.username = null;
+            user.password_hash = null;
+            user.email = null;
+            return user;
+        }
 
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
 

@@ -46,6 +46,10 @@ public class Application extends Controller {
             flash("error","Invalid User");
             return redirect(routes.Application.index());
         }
+        else if (nUser.username == null){
+            flash("error","Duplicate Username");
+            return redirect(routes.Application.index());
+        }
         nUser.save();
 
         flash("success", "Welcome new user " + nUser.username);
