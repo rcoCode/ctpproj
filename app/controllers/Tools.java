@@ -5,6 +5,7 @@ import models.Users;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class Tools extends Controller{
         List<ToolType> stypes = ToolType.find.all();
         return ok(views.html.tools.index.render(stypes));
     }
-
+    @Security.Authenticated(UserAuth.class)
     public Result create(){
         Form<models.Tools> toolsForm = Form.form(models.Tools.class).bindFromRequest();
         String type_id = toolsForm.data().get("type_id");
