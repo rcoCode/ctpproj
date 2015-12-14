@@ -3,7 +3,7 @@
 @main("Tool"){
 <div class="container">
 
-    @if(Long.parseLong(session().get("user_id")) == mytool.owner.id){
+    @if(session().get("user_id") != null && (Long.parseLong(session().get("user_id")) == mytool.owner.id)){
     <div class="row">
         <div class="col-sm-offset-11"><a href="#myModal" role="button" class="btn btn-danger btn-lg" data-toggle="modal">Delete</a></div>
     </div>
