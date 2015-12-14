@@ -25,7 +25,7 @@ public class Users extends Model{
 
     public String password_hash;
 
-    //public Boolean admin;
+    public Boolean admin = false;
 
     public static Finder<Long, Users> find=new Finder<Long, Users>(Users.class);
 

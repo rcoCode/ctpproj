@@ -50,6 +50,7 @@ create table Users (
   email                     varchar(255),
   username                  varchar(255),
   password_hash             varchar(255),
+  admin                     boolean,
   constraint uq_Users_username unique (username),
   constraint pk_Users primary key (id))
 ;
