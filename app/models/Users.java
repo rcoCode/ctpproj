@@ -25,7 +25,7 @@ public class Users extends Model{
 
     public String password_hash;
 
-    //public Boolean admin;
+    public Boolean admin = false;
 
     public static Finder<Long, Users> find=new Finder<Long, Users>(Users.class);
 
@@ -37,6 +37,7 @@ public class Users extends Model{
         if(password==null || username==null || email==null || password.length()<8){
             return null;
         }
+        //If return null it means there's no user by that username
         if (Users.find.where().eq("username", username).findUnique()!=null){
             Users user = new Users();
             user.username = null;
