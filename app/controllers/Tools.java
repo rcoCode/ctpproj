@@ -5,6 +5,7 @@ import models.Users;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 
 import java.util.List;
 
@@ -35,6 +36,36 @@ public class Tools extends Controller{
         flash("success","Posted new Tool:"+ntool.name);
         return redirect(routes.Users.show(id));
 
+    }
+
+    public Result show(Long id){
+        models.Tools mytool = models.Tools.find.byId(id);
+        if(mytool == null){
+            flash("error","error finding tool page please try again");
+            return notFound("Not Found");
+        }
+        else{
+            return ok(views.html.tools.show.render(mytool));
+        }
+    }
+
+    @Security.Authenticated(UserAuth.class)
+    public Result remove(Long id){
+        models.Tools mytool = models.Tools.find.byId(id);
+        if(mytool == null){
+            flash("error","error finding tool page please try again");
+            return notFound("Not Found");
+        }
+        Long u_id = Long.parseLong(session().get("user_id"));
+         if(u_id != mytool.owner.id){
+            flash("error","Only the tool owner can delete a tool");
+             return notFound("Error");
+        }
+        else{
+            mytool.delete();
+             flash("success","Tool Deleted!");
+            return redirect(routes.Users.show(u_id));
+        }
     }
 
 }

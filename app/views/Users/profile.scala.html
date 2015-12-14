@@ -38,7 +38,7 @@
         }   else{
             <ul>
                 @for(mt<-mytools){
-                    <li>@mt.name</li>
+                    <li><a href="@routes.Tools.show(mt.id)"><button class="btn btn-link btn-large">@mt.name</button></a></li>
                 }
             </ul>
         }

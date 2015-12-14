@@ -20,6 +20,8 @@ GET     /tooltypes/:id              controllers.ToolTypes.show(id:Long)
 
 GET     /tools                      controllers.Tools.index()
 POST    /tools                      controllers.Tools.create()
+GET     /tools/:id                  controllers.Tools.show(id:Long)
+POST    /tools/:id                  controllers.Tools.remove(id:Long)
 
 
 # Map static resources from the /public folder to the /assets URL path
