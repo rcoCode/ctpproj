@@ -16,6 +16,7 @@ public class global extends GlobalSettings {
             admin.save();
         }
 
+
         super.onStart(application);
     }
 

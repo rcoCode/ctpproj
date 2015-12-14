@@ -23,6 +23,9 @@ public class ToolType extends Model{
     public List<Tools> toolList;
 
     public static ToolType createType(String name){
+        if (ToolType.find.where().eq("name",name).findUnique()!=null) {
+            return null;
+        }
         ToolType type = new ToolType();
         type.name = name;
         return type;

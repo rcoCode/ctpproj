@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Tools;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
 import models.ToolType;
@@ -21,9 +22,15 @@ public class ToolTypes extends Controller{
 
     @Security.Authenticated(AdminAuth.class)
     public Result create(){
-        ToolType type = Form.form(ToolType.class).bindFromRequest().get();
-        type.save();
-        flash("success", "saved new ToolType" + type.name);
+        DynamicForm type = Form.form().bindFromRequest();
+        String name = type.data().get("name");
+        ToolType newType = ToolType.createType(name);
+        if (newType==null){
+            flash("error","Already a ToolType");
+            return redirect(routes.Application.index());
+        }
+        newType.save();
+        flash("success", "saved new ToolType" + newType.name);
         return redirect(routes.ToolTypes.index());
     }
 
