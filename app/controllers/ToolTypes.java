@@ -19,6 +19,7 @@ public class ToolTypes extends Controller{
         return ok(views.html.types.index.render(types));
     }
 
+    @Security.Authenticated(AdminAuth.class)
     public Result create(){
         ToolType type = Form.form(ToolType.class).bindFromRequest().get();
         type.save();
