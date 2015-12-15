@@ -28,7 +28,7 @@ public class comments extends Controller{
         }
         Form<Comments> commentsForm = Form.form(Comments.class).bindFromRequest();
         Long u_id = Long.parseLong(session().get("user_id"));
-        Users post = Users.find.byId(id);
+        Users post = Users.find.byId(u_id);
         Comments com = commentsForm.get();
         com.poster = post;
         com.topic = Tools.find.byId(id);
