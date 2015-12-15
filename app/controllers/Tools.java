@@ -15,10 +15,12 @@ import java.util.List;
  */
 public class Tools extends Controller{
 
+    @Security.Authenticated(UserAuth.class)
     public Result index(){
         List<ToolType> stypes = ToolType.find.all();
         return ok(views.html.tools.index.render(stypes));
     }
+    
     @Security.Authenticated(UserAuth.class)
     public Result create(){
         Form<models.Tools> toolsForm = Form.form(models.Tools.class).bindFromRequest();

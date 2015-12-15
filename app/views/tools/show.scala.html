@@ -1,4 +1,4 @@
-@(mytool:models.Tools, toolCom:List[Comments])
+@(mytool:models.Tools, toolComs:List[Comments])
 
 @main("Tool"){
 <div class="container">
@@ -100,10 +100,10 @@
         </div>
     </div>
 
-    @if(toolCom.isEmpty()){
+    @if(toolComs.isEmpty()){
         <h3>No Comments</h3>
     }   else{
-        @for(c<-toolCom){
+        @for(c <- toolComs){
             <div class="panel panel-default">
                 <div class="panel-body">
                     <p>@c.body</p>
