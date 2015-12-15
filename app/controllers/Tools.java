@@ -7,6 +7,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,7 +46,9 @@ public class Tools extends Controller{
             return notFound("Not Found");
         }
         else{
-            return ok(views.html.tools.show.render(mytool));
+            List<Comments> toolComs = mytool.commentList;
+            if (toolComs == null){ toolComs = new ArrayList<>();}
+            return ok(views.html.tools.show.render(mytool,toolComs));
         }
     }
 

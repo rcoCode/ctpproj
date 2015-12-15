@@ -8,7 +8,7 @@
     }else{
         <ul>
             @for(t<-tool){
-                <li>@t.name</li>
+                <li><a href="@routes.Tools.show(t.id)"><button class="btn btn-link btn-large">@t.name</button></a></li>
             }
         </ul>
     }

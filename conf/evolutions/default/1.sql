@@ -6,7 +6,7 @@
 create table comments (
   id                        bigserial not null,
   body                      varchar(255),
-  user_id                   bigint,
+  poster_id                 bigint,
   topic_id                  bigint,
   post_time                 timestamp,
   constraint pk_comments primary key (id))
@@ -55,20 +55,22 @@ create table Users (
   constraint pk_Users primary key (id))
 ;
 
-alter table comments add constraint fk_comments_topic_1 foreign key (topic_id) references tools (id);
-create index ix_comments_topic_1 on comments (topic_id);
-alter table pm add constraint fk_pm_sender_2 foreign key (sender_id) references Users (id);
-create index ix_pm_sender_2 on pm (sender_id);
-alter table pm add constraint fk_pm_receiver_3 foreign key (receiver_id) references Users (id);
-create index ix_pm_receiver_3 on pm (receiver_id);
-alter table request add constraint fk_request_wanted_4 foreign key (wanted_id) references tools (id);
-create index ix_request_wanted_4 on request (wanted_id);
-alter table request add constraint fk_request_borrower_5 foreign key (borrower_id) references Users (id);
-create index ix_request_borrower_5 on request (borrower_id);
-alter table tools add constraint fk_tools_owner_6 foreign key (owner_id) references Users (id);
-create index ix_tools_owner_6 on tools (owner_id);
-alter table tools add constraint fk_tools_category_7 foreign key (category_id) references tool_type (id);
-create index ix_tools_category_7 on tools (category_id);
+alter table comments add constraint fk_comments_poster_1 foreign key (poster_id) references Users (id);
+create index ix_comments_poster_1 on comments (poster_id);
+alter table comments add constraint fk_comments_topic_2 foreign key (topic_id) references tools (id);
+create index ix_comments_topic_2 on comments (topic_id);
+alter table pm add constraint fk_pm_sender_3 foreign key (sender_id) references Users (id);
+create index ix_pm_sender_3 on pm (sender_id);
+alter table pm add constraint fk_pm_receiver_4 foreign key (receiver_id) references Users (id);
+create index ix_pm_receiver_4 on pm (receiver_id);
+alter table request add constraint fk_request_wanted_5 foreign key (wanted_id) references tools (id);
+create index ix_request_wanted_5 on request (wanted_id);
+alter table request add constraint fk_request_borrower_6 foreign key (borrower_id) references Users (id);
+create index ix_request_borrower_6 on request (borrower_id);
+alter table tools add constraint fk_tools_owner_7 foreign key (owner_id) references Users (id);
+create index ix_tools_owner_7 on tools (owner_id);
+alter table tools add constraint fk_tools_category_8 foreign key (category_id) references tool_type (id);
+create index ix_tools_category_8 on tools (category_id);
 
 
 

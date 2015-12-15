@@ -65,4 +65,7 @@ public class Users extends Model{
 
     @OneToMany(mappedBy = "sender")
     public List<PM> sentMess;
+
+    @OneToMany(mappedBy = "poster")
+    public List<Comments> commented;
 }

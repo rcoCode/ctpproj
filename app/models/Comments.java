@@ -5,6 +5,7 @@ import com.avaje.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import java.util.Date;
 
 /**
@@ -17,7 +18,8 @@ public class Comments extends Model{
 
     public String body;
 
-    public Long userId;
+    @ManyToOne
+    public Users poster;
 
     @ManyToOne
     public Tools topic;
