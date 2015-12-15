@@ -7,6 +7,8 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by rebeca on 11/18/2015.
@@ -14,6 +16,19 @@ import java.util.List;
 @Table(name="Users")
 @Entity
 public class Users extends Model{
+    private Pattern pattern;
+    private Matcher matcher;
+
+    private static final String USERNAME_PATTERN = "^[a-zA-Z0-9_-]{4,8}$";
+
+    public Users(){
+        pattern = Pattern.compile(USERNAME_PATTERN);
+    }
+
+    public boolean validate(String username){
+        matcher = pattern.matcher(username);
+        return matcher.matches();
+    }
     @Id
     public Long id;
 
@@ -49,12 +64,18 @@ public class Users extends Model{
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
 
         Users User = new Users();
-        User.username=username;
-        User.password_hash=passwordHash;
-        User.email=email;
-        //User.admin=false;
+        if (User.validate(username)) {
+            User.username = username;
+            User.password_hash = passwordHash;
+            User.email = email;
+            //User.admin=false;
 
-        return User;
+            return User;
+        }
+        else {
+            User.username = null;
+            return User;
+        }
     }
 
     @OneToMany(mappedBy = "owner")
