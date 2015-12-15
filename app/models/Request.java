@@ -5,7 +5,6 @@ import org.joda.time.DateTime;
 import play.data.format.Formats;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by rebeca on 12/4/2015.
@@ -18,10 +17,12 @@ public class Request extends Model{
     public String message;
     //time of request
     @Formats.DateTime(pattern = "MM/dd/yy")
-    public DateTime start;
+    public DateTime startDate;
+
     @Formats.DateTime(pattern = "MM/dd/yy")
-    public DateTime end;
+    public DateTime endDate;
     //yes or no from user
+
     public Boolean status;
 
     @ManyToOne
@@ -36,8 +37,8 @@ public class Request extends Model{
     public static Request create(String text,DateTime begin,DateTime due,Tools want,Users b, Users l){
         Request req = new Request();
         req.message = text;
-        req.start = begin;
-        req.end = due;
+        req.startDate = begin;
+        req.endDate = due;
         req.status = false;
         req.borrower = b;
         req.lender = l;
