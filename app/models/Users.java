@@ -90,9 +90,9 @@ public class Users extends Model{
     @OneToMany(mappedBy = "poster")
     public List<Comments> commented;
 
-    @ManyToMany(mappedBy = "lender")
+    @OneToMany(mappedBy = "lender")
     public List<Request> lend;
 
-    @ManyToMany(mappedBy = "borrower")
+    @OneToMany(mappedBy = "borrower")
     public List<Request> borrow;
 }

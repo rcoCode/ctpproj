@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import play.data.format.Formats;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,5 +25,6 @@ public class Comments extends Model{
     @ManyToOne
     public Tools topic;
 
+    @Formats.DateTime(pattern = "hh:mm MM/dd/yy")
     public Date postTime;
 }
