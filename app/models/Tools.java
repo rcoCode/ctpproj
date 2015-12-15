@@ -2,10 +2,7 @@ package models;
 
 import com.avaje.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -19,6 +16,9 @@ public class Tools extends Model{
     public String name;
 
     public String description;
+
+    @OneToMany(mappedBy = "wanted")
+    public List<Request> reqList;
 
     @ManyToOne
     public Users owner;
