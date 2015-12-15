@@ -2,10 +2,7 @@ package models;
 
 import com.avaje.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -18,16 +15,31 @@ public class Request extends Model{
     //message
     public String message;
     //time of request
-    public Date timer;
+    public Date start;
+    public Date end;
     //yes or no from user
     public Boolean status;
 
     @ManyToOne
     public Tools wanted;
 
-    @ManyToOne
+    @ManyToMany(cascade = CascadeType.ALL)
     public Users borrower;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     public Users lender;
+
+    public static Request create(String text,Date begin,Date due,Tools want,Users b, Users l){
+        Request req = new Request();
+        req.message = text;
+        req.start = begin;
+        req.end = due;
+        req.status = false;
+        req.borrower = b;
+        req.lender = l;
+        req.wanted = want;
+
+        return req;
+    }
+
 }
