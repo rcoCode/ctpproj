@@ -23,10 +23,12 @@ create table pm (
 create table request (
   id                        bigserial not null,
   message                   varchar(255),
-  timer                     timestamp,
+  start_date                timestamp,
+  end_date                  timestamp,
   status                    boolean,
   wanted_id                 bigint,
   borrower_id               bigint,
+  lender_id                 bigint,
   constraint pk_request primary key (id))
 ;
 
@@ -67,10 +69,12 @@ alter table request add constraint fk_request_wanted_5 foreign key (wanted_id) r
 create index ix_request_wanted_5 on request (wanted_id);
 alter table request add constraint fk_request_borrower_6 foreign key (borrower_id) references Users (id);
 create index ix_request_borrower_6 on request (borrower_id);
-alter table tools add constraint fk_tools_owner_7 foreign key (owner_id) references Users (id);
-create index ix_tools_owner_7 on tools (owner_id);
-alter table tools add constraint fk_tools_category_8 foreign key (category_id) references tool_type (id);
-create index ix_tools_category_8 on tools (category_id);
+alter table request add constraint fk_request_lender_7 foreign key (lender_id) references Users (id);
+create index ix_request_lender_7 on request (lender_id);
+alter table tools add constraint fk_tools_owner_8 foreign key (owner_id) references Users (id);
+create index ix_tools_owner_8 on tools (owner_id);
+alter table tools add constraint fk_tools_category_9 foreign key (category_id) references tool_type (id);
+create index ix_tools_category_9 on tools (category_id);
 
 
 

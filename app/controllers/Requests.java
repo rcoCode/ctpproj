@@ -33,8 +33,8 @@ public class Requests extends Controller{
         Users owns = want.owner;
         Form<Request> requestForm = Form.form(Request.class).bindFromRequest();
         String text = requestForm.data().get("text");
-        String start = requestForm.data().get("start");
-        String end = requestForm.data().get("end");
+        String start = requestForm.data().get("startDate");
+        String end = requestForm.data().get("endDate");
 
         org.joda.time.format.DateTimeFormatter format = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss");
         DateTime begin = format.parseDateTime(start);
@@ -44,5 +44,8 @@ public class Requests extends Controller{
         nReq.save();
         flash("success","Request Sent");
         return redirect(routes.Tools.show(id));
+    }
+    public Result acceptRequest(){
+        return ok();
     }
 }

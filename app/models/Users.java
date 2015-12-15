@@ -16,19 +16,15 @@ import java.util.regex.Pattern;
 @Table(name="Users")
 @Entity
 public class Users extends Model{
-    private Pattern pattern;
-    private Matcher matcher;
 
     private static final String USERNAME_PATTERN = "^[a-zA-Z0-9_-]{4,8}$";
+    public static final Pattern pattern = Pattern.compile(USERNAME_PATTERN);
 
-    public Users(){
-        pattern = Pattern.compile(USERNAME_PATTERN);
+
+    public static boolean validate(String username){
+        return pattern.matcher(username).matches();
     }
 
-    public boolean validate(String username){
-        matcher = pattern.matcher(username);
-        return matcher.matches();
-    }
     @Id
     public Long id;
 
@@ -49,22 +45,10 @@ public class Users extends Model{
     }
 
     public static Users createUser(String username,String password,String email){
-        if(password==null || username==null || email==null || password.length()<8){
-            return null;
-        }
-        //If return null it means there's no user by that username
-        if (Users.find.where().eq("username", username).findUnique()!=null){
-            Users user = new Users();
-            user.username = null;
-            user.password_hash = null;
-            user.email = null;
-            return user;
-        }
-
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
 
         Users User = new Users();
-        if (User.validate(username)) {
+        if (Users.validate(username)) {
             User.username = username;
             User.password_hash = passwordHash;
             User.email = email;
@@ -73,8 +57,7 @@ public class Users extends Model{
             return User;
         }
         else {
-            User.username = null;
-            return User;
+            return null;
         }
     }
 

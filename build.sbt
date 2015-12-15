@@ -14,6 +14,8 @@ libraryDependencies ++= Seq(
   "org.mindrot" % "jbcrypt" % "0.3m"
 )
 
+libraryDependencies += "joda-time" % "joda-time" % "2.9.1"
+
 libraryDependencies +=   "org.webjars"	%	"bootstrap"	% "3.3.5"
 
 // Play provides two styles of routers, one expects its actions to be injected, the
