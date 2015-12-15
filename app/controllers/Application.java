@@ -7,6 +7,8 @@ import play.mvc.*;
 
 import views.html.*;
 
+import java.util.regex.Pattern;
+
 import static play.data.Form.form;
 
 public class Application extends Controller {
@@ -36,25 +38,34 @@ public class Application extends Controller {
     public Result signup() { return ok(views.html.signup.render(""));}
 
     public Result newUser() {
+        String USERNAME_PATTERN = "^[a-zA-Z0-9_-]{4,8}$";
+        Pattern pattern= Pattern.compile(USERNAME_PATTERN);
+
         DynamicForm userForm=form().bindFromRequest();
         String username=userForm.data().get("username");
         String password=userForm.data().get("password");
         String email=userForm.data().get("email");
 
-        Users nUser=Users.createUser(username,password,email);
-        if (nUser == null){
-            flash("error","Invalid User");
+
+        if (! pattern.matcher(username).matches()){
+            flash("error", "Invalid character for usernames");
             return redirect(routes.Application.index());
-        }
-        else if (nUser.username == null){
+        }else if (Users.find.where().eq("username", username).findUnique()!=null){
             flash("error","Duplicate Username");
             return redirect(routes.Application.index());
+        }else if(password.isEmpty() || username.isEmpty() || email.isEmpty()){
+            flash("error","Empty Fields");
+            return redirect(routes.Application.index());
+        }else if (password.length()<8){
+            flash("error", "Password should be at least 8 characters");
+            return redirect(routes.Application.index());
+        }else {
+            Users nUser = Users.createUser(username, password, email);
+            nUser.save();
+            flash("success", "Welcome new user " + nUser.username);
+            session("user_id", nUser.id.toString());
+            return redirect(routes.Users.show(nUser.id));
         }
-        nUser.save();
-
-        flash("success", "Welcome new user " + nUser.username);
-        session("user_id", nUser.id.toString());
-        return redirect(routes.Users.show(nUser.id));
     }
 
     public Result logout() {

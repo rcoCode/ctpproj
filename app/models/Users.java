@@ -45,18 +45,6 @@ public class Users extends Model{
     }
 
     public static Users createUser(String username,String password,String email){
-        if(password==null || username==null || email==null || password.length()<8){
-            return null;
-        }
-        //If return null it means there's no user by that username
-        if (Users.find.where().eq("username", username).findUnique()!=null){
-            Users user = new Users();
-            user.username = null;
-            user.password_hash = null;
-            user.email = null;
-            return user;
-        }
-
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
 
         Users User = new Users();
@@ -69,8 +57,7 @@ public class Users extends Model{
             return User;
         }
         else {
-            User.username = null;
-            return User;
+            return null;
         }
     }
 
