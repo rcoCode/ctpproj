@@ -48,17 +48,13 @@ public class Users extends Model{
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
 
         Users User = new Users();
-        if (Users.validate(username)) {
-            User.username = username;
-            User.password_hash = passwordHash;
-            User.email = email;
+
+        User.username = username;
+        User.password_hash = passwordHash;
+        User.email = email;
             //User.admin=false;
 
-            return User;
-        }
-        else {
-            return null;
-        }
+        return User;
     }
 
     @OneToMany(mappedBy = "owner")
