@@ -42,6 +42,7 @@ create table tools (
   id                        bigserial not null,
   name                      varchar(255),
   description               varchar(255),
+  available                 boolean,
   owner_id                  bigint,
   category_id               bigint,
   constraint pk_tools primary key (id))

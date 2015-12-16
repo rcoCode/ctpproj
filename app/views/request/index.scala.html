@@ -1,0 +1,24 @@
+@(want: models.Tools)
+
+@main("Request"){
+<div class="container">
+    <h2>Request Tool:</h2>
+    <form action="@routes.Requests.borrow(want.id)" class="form-horizontal" method="post">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="text">Message</label>
+            <div class="cols-sm-10">
+                <textarea class="form-control custom-control" name="text" rows="4"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="startDate">Start Date</label>
+            <input type="date" class="form-control input" name="startDate">
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="endDate">Start Date</label>
+            <input type="date" class="form-control input" name="endDate">
+        </div>
+        <button class="btn btn-default btn-lg">Sumbit</button>
+    </form>
+</div>
+}

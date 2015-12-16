@@ -17,6 +17,8 @@ public class Tools extends Model{
 
     public String description;
 
+    public Boolean available;
+
     @OneToMany(mappedBy = "wanted")
     public List<Request> reqList;
 
