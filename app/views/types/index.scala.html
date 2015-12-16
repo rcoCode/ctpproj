@@ -2,8 +2,7 @@
 
 @main("ToolTypes") {
 <div class="container">
-    @if(session().get("user_id") != null){
-    @if(models.Users.find.byId(Long.parseLong(session().get("user_id"))).admin){
+
     <div class="offset-sm-4">
         <form action = "@routes.ToolTypes.create()" method = "post">
             <div class="col-sm-5">
@@ -12,8 +11,7 @@
             <button class="btn btn-default">submit</button>
         </form>
     </div>
-    }
-    }
+
 
     @if(types.isEmpty()) {
     <h2>No types available</h2>

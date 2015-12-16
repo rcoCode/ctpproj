@@ -35,6 +35,7 @@ public class Tools extends Controller{
         models.Tools ntool = toolsForm.get();
         ntool.category = types;
         ntool.owner = own;
+        ntool.available = true;
         ntool.save();
         flash("success","Posted new Tool:"+ntool.name);
         return redirect(routes.Users.show(id));

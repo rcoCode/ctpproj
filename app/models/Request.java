@@ -47,4 +47,6 @@ public class Request extends Model{
         return req;
     }
 
+    public static Finder<Long,Request> find = new Finder<Long, Request>(Request.class);
+
 }

@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Request;
 import models.Tools;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -26,11 +27,16 @@ public class Users extends Controller{
         }
         else {
             List<models.Tools> mytools = auser.toolList;
+            List<Request> accepted = auser.borrow;
             if(mytools == null){
                 mytools = new ArrayList<>();
-                return ok(views.html.Users.profile.render(mytools));
+                return ok(views.html.Users.profile.render(mytools,accepted));
             }
-            return ok(views.html.Users.profile.render(mytools));
+            if(accepted == null){
+                accepted = new ArrayList<>();
+                return ok(views.html.Users.profile.render(mytools,accepted));
+            }
+            return ok(views.html.Users.profile.render(mytools,accepted));
         }
     }
 }

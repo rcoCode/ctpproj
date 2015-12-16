@@ -1,0 +1,31 @@
+@(req: Request)
+
+@main("Request"){
+<div class="container">
+    <center><h1>@req.wanted.name Request</h1></center>
+    <h3>Message:</h3>
+    <div class="span8 col-sm-offset-3">
+        <p style="font-size:large">@req.message</p>
+    </div>
+    <h3>Requested By:</h3>
+    <div class="col-sm-offset-3">
+        <p style="font-size:large">@req.borrower.username</p>
+    </div>
+    <h3>Start Date:</h3>
+    <div class="col-sm-offset-3">
+        <p style="font-size:large">@req.startDate</p>
+    </div>
+    <h3>End Date:</h3>
+    <div class="col-sm-offset-3">
+        <p style="font-size:large">@req.endDate</p>
+    </div>
+    <div class="row">
+        <div class="col-sm-offset-10">
+            <form action="@routes.Requests.acceptRequest(req.id)" method="post">
+                <button class="btn btn-success btn-lg">Accept</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+}

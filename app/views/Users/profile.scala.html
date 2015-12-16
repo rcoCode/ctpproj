@@ -1,4 +1,4 @@
-@(mytools:List[models.Tools])
+@(mytools:List[models.Tools], accepted:List[Request])
 
 @main("Tool Sharing") {
 <div class="container">
@@ -13,13 +13,32 @@
         }   else{
             <ul>
                 @for(mt<-mytools){
-                    <li><a href="@routes.Tools.show(mt.id)"><button class="btn btn-link btn-large">@mt.name</button></a></li>
+                    <li><a href="@routes.Tools.show(mt.id)"><button class="btn btn-link btn-lg">@mt.name</button></a></li>
+                    @if(mt.reqList.isEmpty()){
+                    <em style="font-size:small;">no requests</em>
+                    }   else{
+                    <ul>
+                        @for(r<-mt.reqList){
+                            @if(r.status ==false){
+                                <li><a href="@routes.Requests.acceptRequest(r.id)" class="btn btn-link">@r.borrower.username</a></li>
+                            }
+                        }
+                    </ul>
+                    }
                 }
             </ul>
         }
-
+        <h2>Accepted Request</h2>
+        @if(accepted.isEmpty()){
+        <h4><emp>No accepted Requests</emp></h4>
+        }   else{
+        @for(a<-accepted){
+            <ul>
+                <li>@a.wanted.name <em>from @a.lender.username</em></li>
+            </ul>
+        }
+        }
     </div>
-
 
 </div>
 }
