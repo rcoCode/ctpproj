@@ -19,7 +19,7 @@
                     }   else{
                     <ul>
                         @for(r<-mt.reqList){
-                            @if(r.status ==false){
+                            @if(r.status == false && r.dismiss == false){
                                 <li><a href="@routes.Requests.acceptRequest(r.id)" class="btn btn-link">@r.borrower.username</a></li>
                             }
                         }
