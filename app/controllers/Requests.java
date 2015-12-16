@@ -1,22 +1,15 @@
 package controllers;
 
-import javafx.util.converter.DateStringConverter;
 import models.*;
 import models.Tools;
 import models.Users;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
-import play.data.DynamicForm;
 import play.data.Form;
-import play.data.format.Formats;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 /**
  * Created by rebeca on 12/15/2015.
