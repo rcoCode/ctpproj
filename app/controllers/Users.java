@@ -28,15 +28,20 @@ public class Users extends Controller{
         else {
             List<models.Tools> mytools = auser.toolList;
             List<Request> accepted = auser.borrow;
+            List<Request> lent=auser.lend;
             if(mytools == null){
                 mytools = new ArrayList<>();
-                return ok(views.html.Users.profile.render(mytools,accepted));
+                return ok(views.html.Users.profile.render(mytools,accepted,lent));
             }
             if(accepted == null){
                 accepted = new ArrayList<>();
-                return ok(views.html.Users.profile.render(mytools,accepted));
+                return ok(views.html.Users.profile.render(mytools,accepted,lent));
             }
-            return ok(views.html.Users.profile.render(mytools,accepted));
+            if(lent == null){
+                accepted = new ArrayList<>();
+                return ok(views.html.Users.profile.render(mytools,accepted,lent));
+            }
+            return ok(views.html.Users.profile.render(mytools,accepted,lent));
         }
     }
 }

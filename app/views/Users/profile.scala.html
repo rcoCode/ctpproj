@@ -1,4 +1,4 @@
-@(mytools:List[models.Tools], accepted:List[Request])
+@(mytools:List[models.Tools], accepted:List[Request], lent:List[Request])
 
 @main("Tool Sharing") {
 <div class="container">
@@ -33,12 +33,35 @@
         <h4><emp>No accepted Requests</emp></h4>
         }   else{
         @for(a<-accepted){
-            <ul>
-                <li>@a.wanted.name <em>from @a.lender.username</em></li>
-            </ul>
+            @if(a.status == true){
+                <ul>
+                    <li>@a.wanted.name <em>from @a.lender.username</em></li>
+                </ul>
+            }
+            @if(a.dismiss == true){
+                <ul>
+                    <form action="@routes.Requests.delReq(a.id)" method="post">
+                        <li><button class="btn btn-link btn-sm"> <em>@a.lender.username declined your request for @a.wanted.name</em></button></li>
+                    </form>
+                </ul>
+            }
         }
         }
     </div>
+    <h2>Borrowed Tools</h2>
+    @if(lent.isEmpty){
+    <h4>No Tools currently lent out</h4>
+    }   else{
+    @for(l<-lent){
+        @if(l.status == true){
+        <ul>
+            <form action="@routes.Requests.returnTool(l.id)" method="post">
+                <li><button class="btn btn-link"><em>@l.wanted.name has been returned</em></button></li>
+            </form>
+        </ul>
+        }
+    }
+    }
 
 </div>
 }

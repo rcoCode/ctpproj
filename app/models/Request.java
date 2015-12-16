@@ -22,8 +22,9 @@ public class Request extends Model{
     @Formats.DateTime(pattern = "MM/dd/yy")
     public DateTime endDate;
     //yes or no from user
-
     public Boolean status;
+    //Dismissed by the owner
+    public Boolean dismiss;
 
     @ManyToOne
     public Tools wanted;
@@ -40,6 +41,7 @@ public class Request extends Model{
         req.startDate = begin;
         req.endDate = due;
         req.status = false;
+        req.dismiss = false;
         req.borrower = b;
         req.lender = l;
         req.wanted = want;
