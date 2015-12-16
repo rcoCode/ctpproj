@@ -28,7 +28,10 @@ POST    /comments/:id               controllers.comments.add(id:Long)
 POST    /request/:id                controllers.Requests.borrow(id:Long)
 GET     /request/:id                controllers.Requests.index(id:Long)
 POST    /request/a/:id              controllers.Requests.acceptRequest(id:Long)
-GET    /request/a/:id               controllers.Requests.show(id:Long)
+GET     /request/a/:id              controllers.Requests.show(id:Long)
+POST    /request/dis/:id            controllers.Requests.dismiss(id:Long)
+POST    /request/del/:id            controllers.Requests.delReq(id:Long)
+POST    /request/ret/:id            controllers.Requests.returnTool(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

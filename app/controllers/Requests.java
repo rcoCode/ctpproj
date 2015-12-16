@@ -90,4 +90,54 @@ public class Requests extends Controller{
         update.wanted.save();
         return redirect(routes.Users.show(Long.parseLong(session().get("user_id"))));
     }
+
+    @Security.Authenticated(UserAuth.class)
+    public Result dismiss(Long id){
+        Request update = Request.find.byId(id);
+        if(update == null){
+            flash("error","Can't find request!");
+            return notFound("Not Found");
+        }
+        if (Long.parseLong(session().get("user_id")) != update.lender.id){
+            flash("error","You are not the owner of this tool.");
+            return redirect(routes.Tools.show(update.wanted.id));
+        }
+        update.dismiss = true;
+        update.save();
+        return redirect(routes.Users.show(Long.parseLong(session().get("user_id"))));
+    }
+
+    @Security.Authenticated(UserAuth.class)
+    public Result delReq(Long id){
+        Request update = Request.find.byId(id);
+        if(update == null){
+            flash("error","Can't find request!");
+            return notFound("Not Found");
+        }
+        if (Long.parseLong(session().get("user_id")) != update.borrower.id){
+            flash("error","You are not allowed to perform this function.");
+            return redirect(routes.Tools.show(id));
+        }
+        update.delete();
+        return redirect(routes.Users.show(Long.parseLong(session().get("user_id"))));
+    }
+
+    @Security.Authenticated(UserAuth.class)
+    public Result returnTool(Long id){
+        Request update = Request.find.byId(id);
+        if(update == null){
+            flash("error","Can't find request!");
+            return notFound("Not Found");
+        }
+        if (Long.parseLong(session().get("user_id")) != update.lender.id){
+            flash("error","You are not the owner of this tool.");
+            return redirect(routes.Tools.show(update.wanted.id));
+        }
+        update.delete();
+        update.wanted.available =true;
+        update.wanted.save();
+        flash("success", "Tool Returned");
+        return redirect(routes.Tools.show(update.wanted.id));
+    }
+
 }

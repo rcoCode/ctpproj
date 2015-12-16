@@ -26,6 +26,7 @@ create table request (
   start_date                timestamp,
   end_date                  timestamp,
   status                    boolean,
+  dismiss                   boolean,
   wanted_id                 bigint,
   borrower_id               bigint,
   lender_id                 bigint,
