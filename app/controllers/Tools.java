@@ -49,8 +49,9 @@ public class Tools extends Controller{
         }
         else{
             List<Comments> toolComs = mytool.commentList;
+            List<Request> toolReq = mytool.reqList;
             if (toolComs == null){ toolComs = new ArrayList<>();}
-            return ok(views.html.tools.show.render(mytool,toolComs));
+            return ok(views.html.tools.show.render(mytool,toolComs,toolReq));
         }
     }
 

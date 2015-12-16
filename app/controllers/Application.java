@@ -38,7 +38,7 @@ public class Application extends Controller {
     public Result signup() { return ok(views.html.signup.render(""));}
 
     public Result newUser() {
-        String USERNAME_PATTERN = "^[a-zA-Z0-9_-]{4,8}$";
+        String USERNAME_PATTERN = "^[a-zA-Z0-9_-]{4,12}$";
         Pattern pattern= Pattern.compile(USERNAME_PATTERN);
 
         DynamicForm userForm=form().bindFromRequest();
