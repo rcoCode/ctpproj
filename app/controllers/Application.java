@@ -38,7 +38,7 @@ public class Application extends Controller {
     public Result signup() { return ok(views.html.signup.render(""));}
 
     public Result newUser() {
-        String USERNAME_PATTERN = "^[a-zA-Z0-9_-]{4,8}$";
+        String USERNAME_PATTERN = "^[a-zA-Z0-9_-]{4,12}$";
         Pattern pattern= Pattern.compile(USERNAME_PATTERN);
 
         DynamicForm userForm=form().bindFromRequest();
@@ -46,9 +46,11 @@ public class Application extends Controller {
         String password=userForm.data().get("password");
         String email=userForm.data().get("email");
 
-
         if (! pattern.matcher(username).matches()){
-            flash("error", "Invalid character for usernames");
+            flash("error", "Invalid character for username");
+            return redirect(routes.Application.index());
+        }else if (!pattern.matcher(password).matches()) {
+            flash("error", "Invalid character for password");
             return redirect(routes.Application.index());
         }else if (Users.find.where().eq("username", username).findUnique()!=null){
             flash("error","Duplicate Username");
