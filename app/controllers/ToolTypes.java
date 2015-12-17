@@ -7,7 +7,7 @@ import play.mvc.Controller;
 import models.ToolType;
 import play.mvc.Result;
 import play.mvc.Security;
-
+import models.Users;
 import java.util.List;
 
 
@@ -17,7 +17,8 @@ import java.util.List;
 public class ToolTypes extends Controller{
     public Result index(){
         List<ToolType> types = ToolType.find.all();
-        return ok(views.html.types.index.render(types));
+        Users a = Users.find.where().eq("username", "admin").findUnique();
+        return ok(views.html.types.index.render(types,a));
     }
 
     @Security.Authenticated(AdminAuth.class)

@@ -1,8 +1,8 @@
-@(types: List[ToolType])
+@(types: List[ToolType], a:models.Users)
 
 @main("ToolTypes") {
 <div class="container">
-    @if((session().get("user_id") !=null)&&(models.Users.find.byId(Long.parseLong(session().get("user_id"))).admin)){
+    @if((session().get("user_id") !=null)&&(Long.parseLong(session().get("user_id")) == a.id)){
     <div class="offset-sm-4">
         <form action = "@routes.ToolTypes.create()" method = "post">
             <div class="col-sm-5">
