@@ -9,7 +9,7 @@
             <center><h1>List of Tools</h1></center>
                 <ul> @for(a <- allT){
                     <li>
-                        <h2><a href="@routes.Tools.show(a.id)"><button class="btn btn-link btn-lg">@a.name</button></a></h2>
+                        <h2><a href="@routes.Tools.show(a.id)"><button class="btn btn-link btn-lg" style="color:#F1C40F">@a.name</button></a></h2>
                         <p style="font-size:large"><em>Posted by: @a.owner.username</em></p>
                     </li>
                 }

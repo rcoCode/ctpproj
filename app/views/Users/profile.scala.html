@@ -13,7 +13,7 @@
         }   else{
             <ul>
                 @for(mt<-mytools){
-                    <li><a href="@routes.Tools.show(mt.id)"><button class="btn btn-link btn-lg">@mt.name</button></a></li>
+                    <li><a href="@routes.Tools.show(mt.id)"><button class="btn btn-link btn-lg" style="color:#F1C40F">@mt.name</button></a></li>
                     @if(mt.reqList.isEmpty()){
                     <em style="font-size:small;">no requests</em>
                     }   else{
@@ -52,7 +52,7 @@
             <br>
                 <ul>
                     <form action="@routes.Requests.delReq(a.id)" method="post">
-                        <li><button class="btn btn-link btn-sm"> <em>@a.lender.username declined your request for @a.wanted.name</em></button></li>
+                        <li><button class="btn btn-link btn-sm" style="color:#C0392B"> <em>@a.lender.username declined your request for @a.wanted.name</em></button></li>
                     </form>
                 </ul>
             }
@@ -67,7 +67,7 @@
         @if(l.status == true){
         <ul>
             <form action="@routes.Requests.returnTool(l.id)" method="post">
-                <li><button class="btn btn-link btn-lg"><em>@l.wanted.name has been returned</em></button></li>
+                <li><button class="btn btn-link btn-lg" style="color:#F1C40F"><em>@l.wanted.name has been returned</em></button></li>
             </form>
         </ul>
         }

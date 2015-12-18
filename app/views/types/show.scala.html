@@ -11,7 +11,7 @@
     }else{
     <ul>
         @for(t<-tool){
-        <li><a href="@routes.Tools.show(t.id)"><button class="btn btn-link btn-lg">@t.name</button></a></li>
+        <li><a href="@routes.Tools.show(t.id)"><button class="btn btn-link btn-lg" style="color:#F1C40F">@t.name</button></a></li>
         <p>Posted by: @t.owner.username</p>
         }
     </ul>
