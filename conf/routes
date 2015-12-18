@@ -22,6 +22,7 @@ GET     /tools                      controllers.Tools.index()
 POST    /tools                      controllers.Tools.create()
 GET     /tools/:id                  controllers.Tools.show(id:Long)
 POST    /tools/:id                  controllers.Tools.remove(id:Long)
+GET     /alltools                   controllers.Tools.allTools()
 
 POST    /comments/:id               controllers.comments.add(id:Long)
 

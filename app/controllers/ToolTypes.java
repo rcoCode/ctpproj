@@ -7,7 +7,7 @@ import play.mvc.Controller;
 import models.ToolType;
 import play.mvc.Result;
 import play.mvc.Security;
-
+import models.Users;
 import java.util.List;
 
 
@@ -16,8 +16,9 @@ import java.util.List;
  */
 public class ToolTypes extends Controller{
     public Result index(){
+        Users a = Users.find.where().eq("username", "admin").findUnique();
         List<ToolType> types = ToolType.find.all();
-        return ok(views.html.types.index.render(types));
+        return ok(views.html.types.index.render(types,a));
     }
 
     @Security.Authenticated(AdminAuth.class)
@@ -35,7 +36,14 @@ public class ToolTypes extends Controller{
     }
 
     public Result show(Long id){
+        Users a = Users.find.where().eq("username", "admin").findUnique();
         ToolType type = ToolType.find.byId(id);
+        if(session().get("user_id")!=null){
+            Long user_id = Long.parseLong(session().get("user_id"));
+            List<Tools> tools = Tools.find.where().ne("owner_id",user_id).orderBy("name").findList();
+            return ok(views.html.types.show.render(type, tools));
+        }
+
         if (type==null){
             flash("error","No tools found");
             return notFound("not Found");

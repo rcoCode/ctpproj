@@ -29,7 +29,7 @@ public class Application extends Controller {
             flash("success", "Welcome back " + users.username);
         } else {
             flash("error", "Invalid login. Check your username and password.");
-            return redirect(routes.Application.index());
+            return redirect(routes.Application.getlogin());
         }
 
         return redirect(routes.Users.show(users.id));
@@ -46,21 +46,21 @@ public class Application extends Controller {
         String password=userForm.data().get("password");
         String email=userForm.data().get("email");
 
-        if (! pattern.matcher(username).matches()){
-            flash("error", "Invalid character for username");
-            return redirect(routes.Application.index());
+        if(password.isEmpty() || username.isEmpty() || email.isEmpty()){
+            flash("error","Empty Fields");
+            return redirect(routes.Application.signup());
+        }else if (!pattern.matcher(username).matches()){
+            flash("error", "Invalid Character for Username");
+            return redirect(routes.Application.signup());
         }else if (!pattern.matcher(password).matches()) {
-            flash("error", "Invalid character for password");
-            return redirect(routes.Application.index());
+            flash("error", "Invalid Character for Password");
+            return redirect(routes.Application.signup());
         }else if (Users.find.where().eq("username", username).findUnique()!=null){
             flash("error","Duplicate Username");
-            return redirect(routes.Application.index());
-        }else if(password.isEmpty() || username.isEmpty() || email.isEmpty()){
-            flash("error","Empty Fields");
-            return redirect(routes.Application.index());
+            return redirect(routes.Application.signup());
         }else if (password.length()<8){
-            flash("error", "Password should be at least 8 characters");
-            return redirect(routes.Application.index());
+            flash("error", "Password Should Be At Least 8 Characters");
+            return redirect(routes.Application.signup());
         }else {
             Users nUser = Users.createUser(username, password, email);
             nUser.save();

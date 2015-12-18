@@ -1,0 +1,21 @@
+@(allT: List[models.Tools])
+
+@main("All Tools"){
+<div class="container">
+    @if(allT.isEmpty()){
+        <h2>There is no tool to see right now</h2>
+    }   else {
+        <h2>List of Tools</h2>
+        <ul>
+            @for(a <- allT){
+                <li>
+                    <form action = "@routes.Tools.show(a.id)" method = "get">
+                        <button class ="btn btn-link btn-lg">@a.name</button>
+                        <p>Posted by: @a.owner.username</p>
+                    </form>
+                </li>
+            }
+        </ul>
+    }
+</div>
+}
