@@ -71,6 +71,28 @@ public class global extends GlobalSettings {
                 tool.save();
             }
         }
+        if(Users.find.where().eq("username","emily").findUnique() == null){
+            Users user = Users.createUser("emily","emily12345","email@email.com");
+            user.save();
+            if(ToolType.find.where().eq("name","Hand Tools").findUnique() != null){
+                models.Tools tool = new models.Tools();
+                tool.name = "Saw";
+                tool.description = "This Saw is sharp and easy to use. When operating please be careful";
+                tool.available = true;
+                tool.category = ToolType.find.where().eq("name","Hand Tools").findUnique();
+                tool.owner = user;
+                tool.save();
+            }
+            if(ToolType.find.where().eq("name","Automotive").findUnique() != null){
+                models.Tools tool = new models.Tools();
+                tool.name = "Lawn Mower";
+                tool.description = "Big lawn mower that can handle up to 100 square feet of lawn.";
+                tool.available = true;
+                tool.category = ToolType.find.where().eq("name","Automotive").findUnique();
+                tool.owner = user;
+                tool.save();
+            }
+        }
         super.onStart(application);
     }
 

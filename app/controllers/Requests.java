@@ -41,10 +41,23 @@ public class Requests extends Controller{
         String text = requestForm.data().get("text");
         String startTime = requestForm.data().get("startDate");
         String endTime = requestForm.data().get("endDate");
+        if(text.isEmpty()||startTime.isEmpty()||endTime.isEmpty()){
+            flash("error","Empty Fields. Please complete the form");
+            return redirect(routes.Requests.index(id));
+        }
 
         org.joda.time.format.DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd");
         DateTime begin = format.parseDateTime(startTime);
         DateTime due = format.parseDateTime(endTime);
+        DateTime today = new DateTime();
+
+        if (due.isBefore(begin)){
+            flash("error", "Please check the end date entered");
+            return redirect(routes.Requests.index(id));
+        }else if(begin.isBefore(today)){
+            flash("error","Please check the start date entered");
+            return redirect(routes.Requests.index(id));
+        }
 
         Request nReq = Request.create(text,begin,due,want,borrower,owns);
         nReq.save();

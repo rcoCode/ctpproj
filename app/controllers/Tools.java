@@ -59,11 +59,11 @@ public class Tools extends Controller{
     public Result allTools(){
         if(session().get("user_id")!=null){
             Long user_id = Long.parseLong(session().get("user_id"));
-            List<models.Tools>allT = models.Tools.find.where().ne("owner_id",user_id).orderBy("name").findList();
+            List<models.Tools>allT = models.Tools.find.where().ne("owner_id",user_id).eq("available",true).orderBy("name").findList();
             return ok(views.html.tools.allTools.render(allT));
         }
 
-        List<models.Tools> allT = models.Tools.find.orderBy("name").findList();
+        List<models.Tools> allT = models.Tools.find.where().eq("available",true).orderBy("name").findList();
         return ok(views.html.tools.allTools.render(allT));
     }
 

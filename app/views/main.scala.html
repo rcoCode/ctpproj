@@ -33,7 +33,11 @@
             <div>
                 <ul class="nav navbar-nav">
                     @if(session().get("user_id") != null){
-                    <li class="active"><a href='@routes.Users.show(Long.parseLong(session().get("user_id")))'>Profile</a></li>
+                    <li class="active">
+                        <a href='@routes.Users.show(Long.parseLong(session().get("user_id")))'>
+                            @models.Users.find.where().eq("id", Long.parseLong(session().get("user_id"))).findUnique().username
+                        </a>
+                    </li>
                     }
                     <li><a href="@routes.ToolTypes.index()">Tool Types</a></li>
                     <li><a href="@routes.Tools.allTools()">All Tools</a></li>
@@ -51,15 +55,21 @@
     </nav>
 <div  style="background-color:rgba(215,215,215,0.65);">
     <center>
-        @* Display flash messages *@
-        @if(flash.containsKey("success")) {
-        <p>Success Flash Message:</p>
-        @flash.get("success")
-        }
-        @if(flash.containsKey("error")) {
-        <p>Error Flash Message:</p>
-        @flash.get("error")
-        }
+        <div style = "background-color: #FBF8EF;">
+            @* Display flash messages *@
+            <font color ="green">
+            @if(flash.containsKey("success")) {
+                <p>Success Flash Message:</p>
+            @flash.get("success")
+            }
+            </font>
+            <font color = "red">
+            @if(flash.containsKey("error")) {
+                <p>Error Flash Message:</p>
+            @flash.get("error")
+            }
+            </font>
+        </div>
     </center>
     @content
 </div>

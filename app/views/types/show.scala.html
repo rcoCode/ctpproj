@@ -5,11 +5,13 @@
     <h1>ToolTypes: @types.name</h1>
 
     @if(tool.isEmpty()){
-    <h2>There are no tools in this type</h2>
+    <h2>There are no tools available now</h2>
+    <h3>Please check again later. Thank you! </h3>
     }else{
     <ul>
         @for(t<-tool){
         <li><a href="@routes.Tools.show(t.id)"><button class="btn btn-link btn-lg">@t.name</button></a></li>
+        <p>Posted by: @t.owner.username</p>
         }
     </ul>
     }

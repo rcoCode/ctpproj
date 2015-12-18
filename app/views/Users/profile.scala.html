@@ -37,7 +37,7 @@
         @for(a<-accepted){
             @if(a.status == false && a.dismiss == false){
             <ul>
-                <li style="font-size:large">@a.wanted.name <em>from @a.lender.username</em></li>
+                <font color = "red"><li style="font-size:large">Requesting @a.wanted.name <em>from @a.lender.username</em></li></font>
             </ul>
             }
             @if(a.status == true){

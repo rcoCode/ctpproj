@@ -40,7 +40,7 @@ public class ToolTypes extends Controller{
         ToolType type = ToolType.find.byId(id);
         if(session().get("user_id")!=null){
             Long user_id = Long.parseLong(session().get("user_id"));
-            List<Tools> tools = Tools.find.where().ne("owner_id",user_id).orderBy("name").findList();
+            List<Tools> tools = Tools.find.where().eq("category_id",id).eq("available",true).ne("owner_id", user_id).orderBy("name").findList();
             return ok(views.html.types.show.render(type, tools));
         }
 
@@ -48,7 +48,7 @@ public class ToolTypes extends Controller{
             flash("error","No tools found");
             return notFound("not Found");
         }else {
-            List<Tools> tools = type.toolList;
+            List<Tools> tools = Tools.find.where().eq("category_id",id).eq("available",true).orderBy("name").findList();
             return ok(views.html.types.show.render(type, tools));
         }
     }

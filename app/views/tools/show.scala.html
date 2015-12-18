@@ -14,7 +14,12 @@
         </div>
         }   else{
         <div class="row">
-            <div class="pull-right"><a href="@routes.Requests.index(mytool.id)" role="button" class="btn btn-default disabled btn-lg" data-toggle="modal">Request Tool</a></div>
+            <div class="pull-right">
+                <a href="@routes.Requests.index(mytool.id)" role="button" class="btn btn-default disabled btn-lg" data-toggle="modal">
+                    <font color ="red"><h4>Please Log In Before Requesting a Tool</h4></font>
+                    Request Tool
+                </a>
+            </div>
         </div>
         }
     }
@@ -72,8 +77,15 @@
             <a href="#comModal" role="button" class="btn btn-primary btn-lg" data-toggle="modal">Add Comment</a>
         </div>
     }   else{
-        <div class="pull-right">
-            <a href="#comModal" role="button" class="btn btn-primary btn-lg disabled" data-toggle="modal">Add Comment</a>
+        <div class="row">
+            <div class="pull-right">
+                <a href="#comModal" role="button" class="btn btn-primary btn-lg disabled" data-toggle="modal">
+                    <font color ="red"><h4>Please Log In Before Commenting on a Tool</h4></font>
+                    Add Comment
+                </a>
+            </div>
+
+
         </div>
     }
     <br>
