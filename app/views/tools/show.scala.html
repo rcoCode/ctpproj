@@ -5,12 +5,18 @@
 
     @if(session().get("user_id") != null && (Long.parseLong(session().get("user_id")) == mytool.owner.id)){
     <div class="row">
-        <div class="col-sm-offset-10"><a href="#myModal" role="button" class="btn btn-danger btn-lg" data-toggle="modal">Delete Tool</a></div>
+        <div class="pull-right"><a href="#myModal" role="button" class="btn btn-danger btn-lg" data-toggle="modal">Delete Tool</a></div>
     </div>
     }   else{
-    <div class="row">
-        <div class="col-sm-offset-10"><a href="@routes.Requests.index(mytool.id)" role="button" class="btn btn-default btn-lg" data-toggle="modal">Request Tool</a></div>
-    </div>
+        @if(session().get("user_id") != null && mytool.available){
+        <div class="row">
+            <div class="pull-right"><a href="@routes.Requests.index(mytool.id)" role="button" class="btn btn-default btn-lg" data-toggle="modal">Request Tool</a></div>
+        </div>
+        }   else{
+        <div class="row">
+            <div class="pull-right"><a href="@routes.Requests.index(mytool.id)" role="button" class="btn btn-default disabled btn-lg" data-toggle="modal">Request Tool</a></div>
+        </div>
+        }
     }
 
     <!-- Modal -->
@@ -34,22 +40,39 @@
     </div>
 
     <center><h1>@mytool.name</h1></center>
-    <h3>Description:</h3>
-    <div class="span8 col-sm-offset-3">
-        <p style="font-size:large">@mytool.description</p>
-    </div>
-    <h3>Posted By:</h3>
-    <div class="col-sm-offset-3">
-        <b style="font-size:large">@mytool.owner.username</b>
+    <div class="container">
+        <h3>Description:</h3>
+        <div class="span6 pull-right">
+            <p style="font-size:large">@mytool.description</p>
+        </div>
     </div>
 
+    <div class="container">
+        <h3>Posted By:</h3>
+        <div class="pull-right">
+            <b style="font-size:large">@mytool.owner.username</b>
+        </div>
+    </div>
+
+    <div class="container">
+        <h3>Status:</h3>
+        <div class="pull-right">
+            @if(mytool.available == true){
+            <p style="font-size:large">Tool currently available</p>
+            }   else{
+            <p style="font-size:large">Tool is lent out</p>
+            }
+        </div>
+    </div>
+
+    <br>
     <center><h1>Comments</h1></center>
     @if(session().get("user_id") != null){
-        <div class="col-sm-offset-10">
+        <div class="pull-right">
             <a href="#comModal" role="button" class="btn btn-primary btn-lg" data-toggle="modal">Add Comment</a>
         </div>
     }   else{
-        <div class="col-sm-offset-10">
+        <div class="pull-right">
             <a href="#comModal" role="button" class="btn btn-primary btn-lg disabled" data-toggle="modal">Add Comment</a>
         </div>
     }
@@ -75,7 +98,7 @@
     </div>
 
     @if(toolComs.isEmpty()){
-        <h3>No Comments</h3>
+        <h3><em>No Comments</em></h3>
     }   else{
         @for(c <- toolComs){
             <div class="panel panel-default">

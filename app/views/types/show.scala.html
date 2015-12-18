@@ -1,15 +1,17 @@
 @(types: ToolType, tool: List[models.Tools])
 
 @main("ToolTypes") {
-<h1>ToolTypes: @types.name</h1>
+<div class="container">
+    <h1>ToolTypes: @types.name</h1>
 
     @if(tool.isEmpty()){
-        <h2>There are no tools in this type</h2>
+    <h2>There are no tools in this type</h2>
     }else{
-        <ul>
-            @for(t<-tool){
-                <li><a href="@routes.Tools.show(t.id)"><button class="btn btn-link btn-large">@t.name</button></a></li>
-            }
-        </ul>
+    <ul>
+        @for(t<-tool){
+        <li><a href="@routes.Tools.show(t.id)"><button class="btn btn-link btn-lg">@t.name</button></a></li>
+        }
+    </ul>
     }
+</div>
 }
