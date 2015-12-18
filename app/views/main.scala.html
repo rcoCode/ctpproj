@@ -32,9 +32,8 @@
             </div>
             <div>
                 <ul class="nav navbar-nav">
-                    <li><a href="@routes.ToolTypes.index()">Tool Types</a></li>
                     @if(session().get("user_id") != null){
-                    <li class ="active"><a href='@routes.Users.show(Long.parseLong(session().get("user_id")))'>Profile</a></li>
+                    <li class="active"><a href='@routes.Users.show(Long.parseLong(session().get("user_id")))'>Profile</a></li>
                     }
                     <li><a href="@routes.ToolTypes.index()">Tool Types</a></li>
                     <li><a href="@routes.Tools.allTools()">All Tools</a></li>

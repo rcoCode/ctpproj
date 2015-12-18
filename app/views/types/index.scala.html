@@ -16,12 +16,12 @@
     @if(types.isEmpty()) {
     <h2>No types available</h2>
     } else {
-        <h2>Tool Types List</h2>
+        <center><h1>Tool Types List</h1></center>
         <ul>
             @for(ty <- types) {
                 <li>
                     <form action = "@routes.ToolTypes.show(ty.id)" method="get">
-                        <button class="btn btn-link btn-lg">@ty.name</button>
+                        <h1><button class="btn btn-link btn-lg">@ty.name</button></h1>
                     </form>
                 </li>
             }
