@@ -84,9 +84,8 @@
                     Add Comment
                 </a>
             </div>
-
-
         </div>
+
     }
     <br>
     <!-- Modal -->
@@ -109,20 +108,25 @@
         </div>
     </div>
 
+    <br>
     @if(toolComs.isEmpty()){
         <h3><em>No Comments</em></h3>
     }   else{
         @for(c <- toolComs){
-            <div class="panel panel-default">
+        <div class="row">
+            <div class="panel panel-default" style="color:black;">
                 <div class="panel-body">
-                    <p>@c.body</p>
+                    <p style="font-size:large">@c.body</p>
                 </div>
                 <div class="panel-footer">
-                    @c.postTime
-                    <b class="col-sm-offset-11" style="font-size:small">@c.poster.username</b>
+                    <div class="row">
+                        <em class="col-sm-offset-1" style="font-size:small;">@c.postTime</em>
+                        <b class="col-sm-offset-10">@c.poster.username</b>
+                    </div>
                 </div>
             </div>
-            <br>
+        </div>
+        <br>
         }
     }
 

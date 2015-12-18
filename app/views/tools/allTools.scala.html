@@ -6,11 +6,11 @@
                 <h2>There are no tools available now</h2>
                 <h3>Please check again later. Thank you! </h3>
         }   else {
-            <h2>List of Tools</h2>
+            <center><h1>List of Tools</h1></center>
                 <ul> @for(a <- allT){
                     <li>
-                        <a href="@routes.Tools.show(a.id)"><button class="btn btn-link btn-lg">@a.name</button></a>
-                        <p>Posted by: @a.owner.username</p>
+                        <h2><a href="@routes.Tools.show(a.id)"><button class="btn btn-link btn-lg">@a.name</button></a></h2>
+                        <p style="font-size:large"><em>Posted by: @a.owner.username</em></p>
                     </li>
                 }
                 </ul>

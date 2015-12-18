@@ -20,7 +20,7 @@
         <ul>
             @for(ty <- types) {
                 <li>
-                    <a href= "@routes.ToolTypes.show(ty.id)"><button class="btn btn-link btn-lg">@ty.name</button></a>
+                    <h2><a href= "@routes.ToolTypes.show(ty.id)"><button class="btn btn-link btn-lg">@ty.name</button></a></h2>
                 </li>
             }
         </ul>

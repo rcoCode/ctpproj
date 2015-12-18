@@ -35,7 +35,8 @@
                     @if(session().get("user_id") != null){
                     <li class="active">
                         <a href='@routes.Users.show(Long.parseLong(session().get("user_id")))'>
-                            @models.Users.find.where().eq("id", Long.parseLong(session().get("user_id"))).findUnique().username
+                            <span class="glyphicon glyphicon-home"></span>
+                            <em>@models.Users.find.where().eq("id", Long.parseLong(session().get("user_id"))).findUnique().username</em>
                         </a>
                     </li>
                     }
@@ -53,9 +54,9 @@
             </div>
         </div>
     </nav>
-<div  style="background-color:rgba(215,215,215,0.65);">
+<div style="color:#ECF0F1">
     <center>
-        <div style = "background-color: #FBF8EF;">
+        <div>
             @* Display flash messages *@
             <font color ="green">
             @if(flash.containsKey("success")) {
