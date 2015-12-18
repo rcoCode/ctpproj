@@ -62,7 +62,7 @@ public class Tools extends Controller{
             List<models.Tools>allT = models.Tools.find.where().ne("owner_id",user_id).orderBy("name").findList();
             return ok(views.html.tools.allTools.render(allT));
         }
-               
+
         List<models.Tools> allT = models.Tools.find.orderBy("name").findList();
         return ok(views.html.tools.allTools.render(allT));
     }

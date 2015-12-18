@@ -11,6 +11,7 @@
                 <li>
                     <form action = "@routes.Tools.show(a.id)" method = "get">
                         <button class ="btn btn-link btn-lg">@a.name</button>
+                        <p>Posted by: @a.owner.username</p>
                     </form>
                 </li>
             }
