@@ -2,20 +2,18 @@
 
 @main("All Tools"){
 <div class="container">
-    @if(allT.isEmpty()){
-        <h2>There is no tool to see right now</h2>
-    }   else {
-        <h2>List of Tools</h2>
-        <ul>
-            @for(a <- allT){
-                <li>
-                    <form action = "@routes.Tools.show(a.id)" method = "get">
-                        <button class ="btn btn-link btn-lg">@a.name</button>
+        @if(allT.isEmpty()){
+                <h2>There are no tools available now</h2>
+                <h3>Please check again later. Thank you! </h3>
+        }   else {
+            <h2>List of Tools</h2>
+                <ul> @for(a <- allT){
+                    <li>
+                        <a href="@routes.Tools.show(a.id)"><button class="btn btn-link btn-lg">@a.name</button></a>
                         <p>Posted by: @a.owner.username</p>
-                    </form>
-                </li>
-            }
-        </ul>
+                    </li>
+                }
+                </ul>
     }
 </div>
 }

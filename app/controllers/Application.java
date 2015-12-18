@@ -28,7 +28,7 @@ public class Application extends Controller {
             session("user_id", users.id.toString());
             flash("success", "Welcome back " + users.username);
         } else {
-            flash("error", "Invalid login. Check your username and password.");
+            flash("error", "Invalid login. Please check your username and password.");
             return redirect(routes.Application.getlogin());
         }
 
