@@ -2,14 +2,14 @@
 
 @main("Tool Sharing") {
 <div class="container">
-    <div class="container">
         <div class="row">
-            <div class="span3 col-sm-offset-11"><h2><a href="@routes.Tools.index()"> <span class="label label-info">New Tool</span> </a></h2></div>
+            <div class="span3 col-sm-offset-11"><h2><a href="@routes.Tools.index()"> <span class="label label-info" style="background-color:#2ECC71">New Tool</span> </a></h2></div>
         </div>
 
-        <h2>Tools</h2>
+        <h2>My Tools</h2>
+        <br>
         @if(mytools.isEmpty()){
-            <h3>No tools posted</h3>
+            <h4><em>No tools posted</em></h4>
         }   else{
             <ul>
                 @for(mt<-mytools){
@@ -28,17 +28,28 @@
                 }
             </ul>
         }
-        <h2>Accepted Request</h2>
+
+        <h2>Pending Requests</h2>
+        <br>
         @if(accepted.isEmpty()){
-        <h4><emp>No accepted Requests</emp></h4>
+        <h4><emp>No Requests Pending</emp></h4>
         }   else{
         @for(a<-accepted){
+            @if(a.status == false && a.dismiss == false){
+            <ul>
+                <li style="font-size:large">@a.wanted.name <em>from @a.lender.username</em></li>
+            </ul>
+            }
             @if(a.status == true){
+            <h2>Accepted Requests</h2>
+            <br>
                 <ul>
-                    <li>@a.wanted.name <em>from @a.lender.username</em></li>
+                    <li style="font-size:large"><em>@a.lender.username</em> agreed to lend you @a.wanted.name</li>
                 </ul>
             }
             @if(a.dismiss == true){
+            <h2>Dismissed Requests</h2>
+            <br>
                 <ul>
                     <form action="@routes.Requests.delReq(a.id)" method="post">
                         <li><button class="btn btn-link btn-sm"> <em>@a.lender.username declined your request for @a.wanted.name</em></button></li>
@@ -47,16 +58,16 @@
             }
         }
         }
-    </div>
     <h2>Borrowed Tools</h2>
+    <br>
     @if(lent.isEmpty){
-    <h4>No Tools currently lent out</h4>
+    <h4><em>No Tools currently lent out</em></h4>
     }   else{
     @for(l<-lent){
         @if(l.status == true){
         <ul>
             <form action="@routes.Requests.returnTool(l.id)" method="post">
-                <li><button class="btn btn-link"><em>@l.wanted.name has been returned</em></button></li>
+                <li><button class="btn btn-link btn-lg"><em>@l.wanted.name has been returned</em></button></li>
             </form>
         </ul>
         }
